@@ -8,8 +8,15 @@ This little script's goal is to make it easy: just export the DB to a SQL file,
 then run
 
 ```
-./wp-db-migrate --from '<OLD_URL>' --to '<NEW_URL>' --in '<path/to/old_db.sql>' --out '<path/to/new_db.sql>'
+./wp-db-migrate.py --from '<OLD_URL>' --to '<NEW_URL>' --in '<path/to/old_db.sql>' --out '<path/to/new_db.sql>'
 ```
+
+For example to deploy your dev copy on `localhost/my_site` to your live site at
+`my_site.com`, assuming you have a dumb of your dev DB at `~/my_site/dump.sql`:
+```
+./wp-db-migrate.py --from 'http://localhost/my_site' --to 'http://my_site.com' --in '~/my_site/dump.sql' --out '/tmp/migrated_dump.sql'
+```
+will create `/tmp/migrated_dump.sql` with the migrated DB you then just need to import into your live server(s).
 
 Note that the input file (old DB file) won't be modified in any way, but the
 output file (new DB) will be overwritten if it exists.
